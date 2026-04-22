@@ -1,6 +1,4 @@
 import ctypes  #using c array
-from wsgiref.util import application_uri
-
 
 class MeraList:
     def __init__(self):
@@ -36,9 +34,42 @@ class MeraList:
         for i in range(self.n):
             result = result + str(self.A[i]) + ','
         return "[" + result[:-1] + "]"
+    def __getitem__(self, index):
+        if 0 <= index < self.n:
+            return self.A[index]
+        else:
+            return "IndexError - Out of range"
+    def pop(self):
+        if self.n == 0:
+            return "empty list"
+        print(self.A[self.n -1])
+        self.n = self.n - 1
+    def clear(self):
+        self.n = 0
+        self.size = 1
+    def find(self,item):
+        for i in range(self.n):
+            if self.A[i] == item:
+                return i
+        return "ValueError- Item not in list"
+    def insert(self,pos,item):
+        if self.n == self.size:
+            self.__resize(self.size * 2)
+        for i in range(self.n,pos,-1):      # if n=5 and pos=1 , the loop will be i = 5,4,3,2 . it will not count 1 because of range function
+                                        #it will run in opposite direction (,,-1)
+            self.A[i] = self.A[i-1]         #A[5] =A [4]
+        self.A[pos] = item      # store the value in index = pos
+        self.n = self.n +1
 
 L = MeraList()
 L.append(10)
 L.append(20)
 L.append(30)
+print(len(L))
+print(L)
+print(L[1])
+L.pop()
+print(L)
+print(L.find(10))
+L.insert(1,100)
 print(L)
