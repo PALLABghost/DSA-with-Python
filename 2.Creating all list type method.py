@@ -62,10 +62,16 @@ class MeraList:
         self.n = self.n +1
     def __delitem__(self, pos):
         if 0<= pos < self.n:
-            for i in (pos,self.n -1):
+            for i in (pos,self.n-1):       #run the loop from pos to n-1 because remove one item
                 self.A = self.A[i+1]
             self.n = self.n -1
 
+    def remove(self, item):
+        pos = self.find(item)           # if in list then return the index number which store in pos
+        if int(pos) == int:
+            self.__delitem__(pos)
+        else:
+            return pos      # which return "ValueError- Item not in list"
 
 
 
