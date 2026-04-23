@@ -60,6 +60,15 @@ class MeraList:
             self.A[i] = self.A[i-1]         #A[5] =A [4]
         self.A[pos] = item      # store the value in index = pos
         self.n = self.n +1
+    def __delitem__(self, pos):
+        if 0<= pos < self.n:
+            for i in (pos,self.n -1):
+                self.A = self.A[i+1]
+            self.n = self.n -1
+
+
+
+
 
 L = MeraList()
 L.append(10)
