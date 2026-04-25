@@ -8,3 +8,11 @@ class LinkedList:
         #empty link list
         self.head = None
         self.n = 0
+def __len__(self):
+    return self.n
+
+
+
+
+
+print(len(L))
