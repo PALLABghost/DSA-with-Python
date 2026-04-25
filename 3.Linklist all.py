@@ -10,7 +10,14 @@ class LinkedList:
         self.n = 0
 def __len__(self):
     return self.n
-
+def insert_head(self,value):
+    #new node
+    new_node = Node(value)
+    #create connection
+    new_node = self.head
+    #reassihn head
+    self.head  = new_node
+    self.n = self.n + 1
 
 
 
