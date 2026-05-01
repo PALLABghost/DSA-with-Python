@@ -99,17 +99,36 @@ class LinkedList:
             curr.next = curr.next.next
             self.n = self.n -1
 
+    def remove_duplicate_also(self,value):
+        # Step 1: Handle duplicates at the head
+        while self.head is not None and self.head.data == value:
+            self.head = self.head.next
+            self.n = self.n -1
+
+        # Step 2: Traverse the rest of the list
+        # Use curr.next is not None when you’re looking ahead (like deleting the next node or stopping before the tail)
+        #If you’re deleting the next node (like in remove), you only need to check curr.next. That’s why while curr.next is not None works — you stop at the node before the tail.
+        # Use curr is not None when you need to process every node, including the tail itself.
+        #If you’re deleting all duplicates, including at the tail, you must check every node. That’s why while curr is not None is needed — otherwise the last node is skipped.
+        curr = self.head
+        while curr is not None and curr.next is not None:   #
+            if curr.next.data == value:
+                curr.next = curr.next.next       # Found a duplicate → bypass it
+                self.n = self.n -1
+            else:
+                curr =  curr.next        # Move forward
+
 
 
 L = LinkedList()
-L.insert_head(4)
+L.insert_head(2)
 L.insert_head(3)
 L.insert_head(2)
 L.insert_head(1)
 L.append(5)
 L.insert_after(2,100)
 print(L)
-L.remove(5)
+L.remove_duplicate_also(2)
 print(L)
 
 
