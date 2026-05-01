@@ -62,6 +62,24 @@ class LinkedList:
         new_node.next = curr.next  # connecting after-> next of current
         curr.next = new_node  # connecting current -> after
         self.n = self.n + 1
+    def clear(self): # empty LL
+        self.head = None
+        self.n = 0
+    def delete_head(self):
+        if self.head is None:
+            print ("Empty LL")
+        self.head = self.head.next
+        self.n = self.n -1
+    def pop(self):   #delete from tail
+        curr = self.head
+        if self.head is None:           #if LL is empty
+            print("Empty LL")
+        if curr.next is None:           #if one item in LL
+            return self.delete_head()
+        while curr.next.next is not None:
+            curr = curr.next
+        curr.next = None
+        self.n = self.n -1
 
 
 L = LinkedList()
@@ -71,6 +89,8 @@ L.insert_head(2)
 L.insert_head(1)
 L.append(5)
 L.insert_after(2,100)
+print(L)
+L.pop()
 print(L)
 
 
