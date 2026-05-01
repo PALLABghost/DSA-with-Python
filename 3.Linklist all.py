@@ -59,6 +59,7 @@ class LinkedList:
             curr = curr.next
         if curr is None:
             print("item not found")
+            return
         new_node.next = curr.next  # connecting after-> next of current
         curr.next = new_node  # connecting current -> after
         self.n = self.n + 1
@@ -68,18 +69,36 @@ class LinkedList:
     def delete_head(self):
         if self.head is None:
             print ("Empty LL")
+            return
         self.head = self.head.next
         self.n = self.n -1
     def pop(self):   #delete from tail
-        curr = self.head
         if self.head is None:           #if LL is empty
             print("Empty LL")
-        if curr.next is None:           #if one item in LL
+            return
+        if self.head.next is None:           #if one item in LL
             return self.delete_head()
+        curr = self.head
         while curr.next.next is not None:
             curr = curr.next
         curr.next = None
         self.n = self.n -1
+    def remove(self,value):
+        if self.head is None:        #if LL is empty
+            print("Empty LL")
+            return
+        if self.head.data == value:      # if need to delete head
+            return self.delete_head()
+        curr = self.head
+        # Traverse until we find the node before the target
+        while curr.next is not None and curr.next.data != value:
+            curr = curr.next
+        if curr.next is None:           #seacrhing completed and it reach to last node
+            print("Item not found")     # so item is not found
+        else:
+            curr.next = curr.next.next
+            self.n = self.n -1
+
 
 
 L = LinkedList()
@@ -90,7 +109,7 @@ L.insert_head(1)
 L.append(5)
 L.insert_after(2,100)
 print(L)
-L.pop()
+L.remove(5)
 print(L)
 
 
