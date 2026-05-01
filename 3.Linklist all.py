@@ -1,6 +1,3 @@
-from time import sleep
-
-
 class Node:
     def __init__(self,value):
         self.data = value
