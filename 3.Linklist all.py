@@ -14,10 +14,12 @@ def insert_head(self,value):
     #new node
     new_node = Node(value)
     #create connection
-    new_node = self.head
+    new_node.next = self.head
     #reassihn head
     self.head  = new_node
     self.n = self.n + 1
+
+    
 
 
 
