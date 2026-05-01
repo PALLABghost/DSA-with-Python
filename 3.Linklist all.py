@@ -96,8 +96,9 @@ class LinkedList:
         if curr.next is None:           #seacrhing completed and it reach to last node
             print("Item not found")     # so item is not found
         else:
-            curr.next = curr.next.next
-            self.n = self.n -1
+            curr.next = curr.next.next      #find the value in next node so skip the next node and store the value of curr.next.next node
+            self.n = self.n - 1
+
 
     def remove_duplicate_also(self,value):
         # Step 1: Handle duplicates at the head
