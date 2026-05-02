@@ -139,6 +139,26 @@ class LinkedList:
             curr = curr.next
             pos = pos + 1
         return "Index out of range"
+    def __delitem__(self, index):
+        if self.head is None:
+            raise IndexError("List is empty")
+
+            # Case 1: delete head
+        if index == 0:
+            self.head = self.head.next
+            self.n -= 1
+            return
+
+        curr = self.head
+        pos = 0
+        # Traverse until the node before the target
+        while curr is not None and curr.next is not None:
+            if (pos + 1) == index:
+                curr.next = curr.next.next
+                self.n = self.n - 1
+                return
+            curr = curr.next
+            pos = pos + 1
 L = LinkedList()
 L.insert_head(2)
 L.insert_head(3)
@@ -149,8 +169,11 @@ L.insert_after(2,100)
 print(L)
 L.remove_duplicate_also(2)
 print(L)
-L.search(20)
-print(L[100])
+L.search(100)
+print(L[3])
+del L[1]
+print(L)
+
 
 
 
