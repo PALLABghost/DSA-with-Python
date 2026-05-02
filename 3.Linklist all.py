@@ -119,8 +119,26 @@ class LinkedList:
             else:
                 curr =  curr.next        # Move forward
 
-
-
+    def search(self,item):
+        curr = self.head
+        pos = 0
+        while curr is not None:
+            if curr.data == item:
+                print(pos)
+                return
+            curr = curr.next
+            pos = pos +1
+        print("item not found")
+        return
+    def __getitem__(self, index):
+        curr = self.head
+        pos = 0
+        while curr is not None:
+            if pos == index:
+                return  curr.data
+            curr = curr.next
+            pos = pos + 1
+        return "Index out of range"
 L = LinkedList()
 L.insert_head(2)
 L.insert_head(3)
@@ -131,6 +149,10 @@ L.insert_after(2,100)
 print(L)
 L.remove_duplicate_also(2)
 print(L)
+L.search(20)
+print(L[100])
+
+
 
 
 
