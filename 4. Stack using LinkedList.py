@@ -69,10 +69,10 @@ def text_editor(text,pattern):
     print(res)
 
 L = [
-    [0, 0, 1, 1],
-    [0, 0, 1, 0],
-    [0, 0, 0, 0],
-    [0, 0, 1, 0]
+    [0,0,1,1],
+    [0,0,1,0],
+    [1,0,0,0],
+    [0,0,1,0]
     ]
 def find_the_celeb(L):
     s = Stack()
@@ -87,7 +87,13 @@ def find_the_celeb(L):
         else:
             # i is not celebrity
             s.push(j)
-    print(s.traverse())
+    celeb = s.pop()
+    for i in range(len(L)):
+        if i != celeb:
+            if L[i][celeb] == 0 or L[celeb][i] == 1:
+                print("No one is a celebrity")
+                return
+    print("The celebrity is", celeb)
 
 
 #s= Stack()
@@ -101,3 +107,4 @@ def find_the_celeb(L):
 #print(s.peak())
 #reverse_string("Hello")
 #text_editor('kolkata','uuuruurr')
+find_the_celeb(L)
