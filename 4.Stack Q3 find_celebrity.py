@@ -1,4 +1,6 @@
 #find the celebrity who doest know anyone, but everyone knows him.
+#find the celebrity using stack,
+#find the celebrity using two pointer
 class Node:
     def __init__(self,value):
         self.data = value
@@ -39,23 +41,38 @@ class Stack:
             self.n = self.n -1
             return data
 
-def find_the_celeb(matrix):
+def find_the_celeb(L):
     s = Stack()
     for i in range(len(L)):
         s.push(i)
     while s.size() >= 2:
         i = s.pop()
         j = s.pop()
-        if L[i][j] == 0:
+        if L[i][j] == 0:        #person i doesnt know person j
             #j is not celebrity
             s.push(i)
-        else:
+        else:                   # L[i]L[j] == 1 #person i know person j
             # i is not celebrity
             s.push(j)
-    celeb = s.pop()
+    celeb = s.pop()             #now one possible celebrity, but not guaranteed yet.
     for i in range(len(L)):
+        if i != celeb:              #check all the posibilty with other,except not with himself
+            if L[i][celeb] == 0 or L[celeb][i] == 1:    # everybody dont know celeb but celeb knows anyone
+                print("No one is a celebrity")
+                return
+    print("The celebrity is", celeb)
+
+def find_celeb_two_pointer(L):
+    n = len(L)
+    # Step 1: find a candidate
+    celeb = 0       #assume person 0 is the initial candidate
+    for i in range(1,n): #No need to compare 0 with itself,We only compare it with the rest of the people (1 → n-1)
+        if L[celeb][i] == 1:   #if celeb know i then celeb is not celebrity, if celeb dont know i then loop not execute and we will find the person who is dont know anyone
+            celeb = i           # loop execute so celeb know i and now we need to verify is i know anyone ? so celab = i again loop will run for checking if i knows anyone
+    # Step 2: verify the candidate
+    for i in range(n):  # now celeb value changes so we cant skip 0 position also
         if i != celeb:
-            if L[i][celeb] == 0 or L[celeb][i] == 1:
+            if L[i][celeb] == 0 or L[celeb][i] == 1:    # we are checking negative way, everybody dont know celeb but celeb knows anyone
                 print("No one is a celebrity")
                 return
     print("The celebrity is", celeb)
@@ -64,8 +81,9 @@ def find_the_celeb(matrix):
 L = [
     [0,0,1,1],
     [0,0,1,0],
-    [1,0,0,0],
+    [0,0,0,0],
     [0,0,1,0]
     ]
 
 find_the_celeb(L)
+find_celeb_two_pointer(L)
