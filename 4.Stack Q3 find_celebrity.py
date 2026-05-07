@@ -44,9 +44,9 @@ class Stack:
 def find_the_celeb(L):
     s = Stack()
     for i in range(len(L)):
-        s.push(i)
+        s.push(i)       #pusing al the person in bucket
     while s.size() >= 2:
-        i = s.pop()
+        i = s.pop()         
         j = s.pop()
         if L[i][j] == 0:        #person i doesnt know person j
             #j is not celebrity
