@@ -44,3 +44,20 @@ class QueueUsingStacks:
             return self.stack_in[-1]        # newest in stack_in
         else:
             return self.stack_out[0]     # bottom of stack_out
+
+    def traverse(self):
+        # Queue order = stack_out (top → bottom) + stack_in (bottom → top)
+        result = self.stack_out[::-1] + self.stack_in
+        return result
+
+q = QueueUsingStacks()
+q.enqueue(2)
+q.enqueue(3)
+q.enqueue(4)
+print(q.traverse())
+q.dequeue()
+print(q.traverse())
+q.enqueue(5)
+print(q.traverse())
+print('5 entered into black string in', q.stack_in)
+print('3 and 4 move to string out', q.stack_out)
