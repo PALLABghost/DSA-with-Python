@@ -10,7 +10,7 @@ class Queue:
 
     def enqueue(self,value):
         new_node = Node(value)
-        if self.rear is None:
+        if self.front is None:
             self.front = new_node
             self.rear = self.front
         else:
@@ -64,7 +64,4 @@ q = Queue()
 q.enqueue(4)
 q.enqueue(5)
 print(q.traverse())
-q.dequeue()
-print(q.traverse())
-print(q.is_empty())
-q.rear_item()
+
